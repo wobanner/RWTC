@@ -1,0 +1,254 @@
+<!-- index.html -->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>RWTC Student Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0b0b;         /* page background */
+      --surface:#111;       /* card background */
+      --text:#e7e7e7;       /* primary text */
+      --muted:#b9b9b9;      /* secondary text */
+      --line:#242424;       /* hairline */
+      --accent:#d6d6d6;     /* subtle accent for links/badges */
+      --radius:14px;
+      --shadow:0 1px 0 rgba(255,255,255,0.03) inset, 0 20px 60px rgba(0,0,0,0.45);
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#fafafa; --surface:#ffffff; --text:#111; --muted:#555; --line:#eaeaea; --accent:#222;
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg); color:var(--text); line-height:1.55;
+    }
+    header{
+      position:sticky; top:0; z-index:2; backdrop-filter:saturate(140%) blur(6px);
+      background:color-mix(in oklab, var(--bg) 85%, transparent);
+      border-bottom:1px solid var(--line);
+    }
+    .wrap{max-width:900px; margin-inline:auto; padding:20px}
+    .site-title{
+      display:flex; align-items:center; gap:14px; font-weight:600; letter-spacing:.2px;
+    }
+    .portrait {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--line);
+      box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 12%, transparent);
+    }
+    .intro-photo {
+      text-align:center;
+      margin-bottom:24px;
+    }
+
+    .intro-photo img {
+      max-width:100%;
+      width:880px;         
+      height:auto;
+      border-radius:14px;
+      border:1px solid var(--line);
+      box-shadow:0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .intro-photo figcaption {
+      font-size:14px;
+      color:var(--muted);
+      margin-top:8px;
+      font-style:italic;
+    }
+
+    .dot{width:10px; height:10px; border-radius:999px; background:var(--accent); box-shadow:0 0 0 3px color-mix(in oklab,var(--accent) 14%, transparent)}
+    nav{display:flex; gap:14px; margin-top:10px; flex-wrap:wrap}
+    nav a{
+      color:var(--text); text-decoration:none; font-size:14px; padding:8px 10px; border:1px solid var(--line); border-radius:10px;
+    }
+    nav a:hover{background:color-mix(in oklab, var(--surface) 60%, transparent)}
+
+    main{padding:32px 20px}
+    .card{
+      background:var(--surface); border:1px solid var(--line);
+      border-radius:var(--radius); box-shadow:var(--shadow); padding:24px;
+    }
+    h1,h2,h3{margin:0 0 10px 0; line-height:1.25}
+    h1{font-weight:600; font-size:34px; letter-spacing:.2px}
+    h2{font-weight:600; font-size:22px; margin-top:18px}
+    h3{font-size:16px; color:var(--muted); text-transform:uppercase; letter-spacing:.12em}
+    p{margin:0 0 14px 0}
+    .muted{color:var(--muted)}
+    .grid{display:grid; gap:18px}
+    .g-2{grid-template-columns:1fr; }
+    @media (min-width: 820px){ .g-2{grid-template-columns:1fr 1fr} }
+    hr{border:none; height:1px; background:var(--line); margin:18px 0}
+    .badge{
+      display:inline-block; padding:4px 10px; border:1px solid var(--line);
+      border-radius:999px; font-size:12px; color:var(--muted);
+    }
+    .mono{font-family:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:13.5px}
+    .list{margin:0; padding-left:16px}
+    .photo-grid{
+      display:grid; gap:12px; grid-template-columns:1fr 1fr; margin-top:10px;
+    }
+    .ph{
+      width:100%; aspect-ratio:4/3; border:1px dashed var(--line); border-radius:12px;
+      display:block; place-items:center; color:var(--muted); background:color-mix(in oklab, var(--surface) 92%, transparent);
+      overflow:hidden; --fx:50%; --fy:50%;
+    }
+    .ph img { width:100%; height:100%; object-fit:cover; display:block; object-position: var(--fx) var(--fy); }
+    .focus-top    { --fy:35%; }
+    .focus-bottom { --fy:65%; }
+    .focus-left   { --fx:35%; }
+    .focus-right  { --fx:65%; }
+    figure{margin:0}
+    footer{
+      border-top:1px solid var(--line); color:var(--muted); font-size:13px;
+      padding:18px 20px 40px; margin-top:32px;
+    }
+    a{color:inherit; text-underline-offset:3px}
+    .kv{
+      display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
+      margin-bottom:16px
+    }
+    .kv small{color:var(--muted)}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="site-title">
+      <img src="assets/portrait.jpg" alt="Photo of Whitney" class="portrait" />
+      <div>
+        <div>Student Portfolio</div>
+        <small class="muted">Whitney O'Banner • Rolex Watchmaking Program</small>
+      </div>
+    </div>
+    <nav aria-label="Primary">
+      <a href="#">Part 1</a>
+      <a href="#part2">Part 2</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap grid">
+
+  <!-- PART 1 -->
+  <section id="part1" class="card">
+    <div class="kv">
+      <h1>Part 1 — Introduction</h1>
+      <span class="badge">Pre-Program</span>
+    </div>
+
+    <h3>Overview</h3>
+    <p><strong>Name:</strong> Whitney O'Banner</p>
+    <p><strong>Program:</strong> Rolex Watchmaking Training Center — 2025-2027 Cohort</p>
+    <p><strong>Focus:</strong> Precision watchmaking, Rolex history, Exceptional customer service</p>
+
+    <h3>Resume / CV</h3>
+    <p>I’m an experienced technology leader turned craftsman. After more than a decade in software engineering, I shifted toward hands-on disciplines that demand focus, precision, and consistency. I’m now training at the Rolex Watchmaking Training Center while continuing to volunteer as a licensed barber for community service projects. My work centers on discipline, systems thinking, and the pursuit of mastery through consistent practice.</p>
+
+    <hr />
+
+    <figure class="intro-photo">
+      <img src="assets/first-day.jpg" alt="First day at the Rolex Watchmaking Training Center">
+      <figcaption>First day at the Rolex Watchmaking Training Center</figcaption>
+    </figure>
+
+  </section>
+
+  <!-- PART 2 -->
+  <section id="part2" class="card">
+    <div class="kv">
+      <h1>Part 2 — Micromechanics</h1>
+      <small class="muted">Sep 2, 2025 - Oct 22, 2025</small>
+    </div>
+ 
+    <h3>Objectives</h3>
+    <ul class="list">
+      <li>Fundamental learning strategies (bench ergonomics, using a loupe, "seeing" with light)</li>
+      <li>Technical mastery targets (e.g., technical drawings, ASSW tolerances, finishing)</li>
+    </ul>
+<p />
+
+    <h3>Skills & Tools</h3>
+    <ul class="list">
+      <li>Core processes: measuring, sawing, filing, drilling, chamfering, finishing, inspection</li>
+      <li>Instruments: calipers, jeweler's saw, files, drill press, abrasives, scribe</li>
+      <li>Documentation: technical drawings, class notes, photographs</li>
+    </ul>
+<p />
+
+    <h3>Coursework & Artifacts</h3>
+    <ul class="list">
+      <li>Module summaries with objectives and reflection</li>
+      <li>Brass/aluminum models and tools</li>
+      <li>Process photos showing iterations</li>
+    </ul>
+<p />
+
+    <h3>Reflection</h3>
+    <p class="mono">Failure has been my greatest teacher. After falling short of my goal in the first micromechanics exam – by one tenth of a point – the following weeks were spent under the collapsed myth that I will always find success in pursuit of a watchmaking career.</p>
+      <p class="mono">Consistency is a necessity of this craft. I learned new techniques for shaping brass and aluminum, but more importantly, I began to understand tolerances – with technical measurements and my own imperfect self.</p>
+      <p class="mono">This section exists to display those imperfections (as growth) over two months of training; the disappointing outcome was a recalibration from perfection to progress. Precision matters, but hopefully my identity no longer depends on it. The failure stripped away my need to prove anything, and what remains is humility, directed attention toward consistency, and the work that remains.</p>
+
+    <h2 style="margin-top:18px">Selected Work - "Aluminum Anvil"</h2>
+
+    <div class="photo-grid" aria-label="Work samples">
+      <figure class="ph">
+        <img src="assets/photo-1.jpeg" alt="Photo 1" />
+      </figure>
+      <figure class="ph">
+        <img src="assets/photo-2.jpeg" alt="Photo 2" />
+      </figure>
+      <figure class="ph">
+        <img src="assets/photo-3.jpeg" alt="Photo 3" />
+      </figure>
+      <figure class="ph">
+        <img src="assets/photo-4.jpeg" alt="Photo 4" />
+      </figure>
+    </div>
+
+    <h3 style="margin-top:16px">Notes</h3>
+    <ul class="list">
+      <li>Photo 1 - Scribed measurements on aluminum material.</li>
+      <li>Photo 2 - Sawing progress to form rough shape of anvil.</li>
+      <li>Photo 3 - Residuals from finishing work, including a few drops of blood.</li>
+      <li>Photo 4 - Completed aluminum anvil with polished chamfers.</li>
+    </ul>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="card">
+    <h1>Contact</h1>
+    <p><strong>Email:</strong> <a href="mailto:wobanner@gmail.com">wobanner@gmail.com</a></p>
+    <p><strong>Links:</strong> <a href="http://www.wobanner.com" rel="me">Website</a> · <a href="https://www.linkedin.com/in/wobanner" rel="me">LinkedIn</a></p>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <div>&copy; <span id="y"></span> WHITNEY O'BANNER</div>
+  <div class="muted">Student at Rolex Watchmaking Training Center</div>
+</footer>
+
+<script>
+  // auto year
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+
+<!-- Requirements source:  [oai_citation:0‡Student Portfolio Reqs.pdf](sediment://file_00000000f3e4722fbf11030de32d15b2) -->
+</body>
+</html>
